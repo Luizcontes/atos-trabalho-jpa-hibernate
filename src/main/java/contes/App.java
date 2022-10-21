@@ -2,10 +2,26 @@ package contes;
 
 import java.util.Scanner;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import contes.Repository.Pessoa;
+
 public class App 
 {
     public static void main( String[] args )
     {
+
+        EntityManagerFactory entityFactory = Persistence.createEntityManagerFactory("teste");
+        EntityManager entityManager = entityFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+
+        Pessoa pessoa = new Pessoa();
+        pessoa.setName("pessoinha");
+        entityManager.persist(pessoa);
+
         Scanner scanner = new Scanner(System.in);
         
         while (true) {
