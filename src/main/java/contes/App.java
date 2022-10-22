@@ -1,30 +1,28 @@
 package contes;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import contes.Repository.Pessoa;
+import contes.Database.LocadoraDb;
 
 public class App 
 {
     public static void main( String[] args )
     {
-
-        EntityManagerFactory entityFactory = Persistence.createEntityManagerFactory("teste");
-        EntityManager entityManager = entityFactory.createEntityManager();
-
-        entityManager.getTransaction().begin();
-
-        Pessoa pessoa = new Pessoa();
-        pessoa.setName("pessoinha");
-        entityManager.persist(pessoa);
-
+        LocadoraDb con = new LocadoraDb();
         Scanner scanner = new Scanner(System.in);
+
+        // Pessoa pessoa = new Pessoa();
+        // pessoa.setName("luluzinha");
+        // con.persist(pessoa);
+        boolean manter = true;
+
+        LocalDate data = LocalDate.parse("2020-10-08");
+
+        data = data.plusDays(3);
+        System.out.print(data);
         
-        while (true) {
+        while (manter) {
             System.out.println( "SISTEMA DE ALGUEL DE CARROS\n" );
             System.out.println("S - SAIR");
             System.out.println("00 - BUSCAR UM CONTRATO DE LOCACAO");
@@ -46,8 +44,7 @@ public class App
                 case "S":
                 case "s":
                     System.out.println("bye bye");
-                    scanner.close();
-                    System.exit(0);
+                    manter = false;
                     break;
                 case "00":
                     break;
@@ -74,8 +71,11 @@ public class App
                 case "11":
                     break;
                 default:
-                    System.out.println("Default!!!");
+                    System.out.print("\nOpcao incorreta...");
+                    scanner.nextLine();
             }
         }
+        con.close();
+        scanner.close();
     }
 }

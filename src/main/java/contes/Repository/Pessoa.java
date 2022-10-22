@@ -8,12 +8,10 @@ import javax.persistence.Id;
 @Entity
 public class Pessoa {
 
-
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String name;
-
     
     public int getId() {
         return id;
@@ -27,5 +25,4 @@ public class Pessoa {
     public void setName(String name) {
         this.name = name;
     }
-    
 }
