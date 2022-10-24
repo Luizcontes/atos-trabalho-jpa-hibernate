@@ -4,8 +4,11 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 import contes.Database.LocadoraDb;
+import contes.Repository.Automovel;
 import contes.Repository.Cliente;
+import contes.Repository.Contrato;
 import contes.Service.GetContrato;
+import contes.Service.CreateAutomovel;
 import contes.Service.CreateCliente;
 import contes.Service.CreateContrato;
 import contes.Service.GetCliente;
@@ -58,14 +61,18 @@ public class App
                     // logic.persist(scanner);
                     break;
                 case "01":
-                    // logic = new CreateContrato();
-                    // logic.persist(scanner);
+                    CreateContrato createContrato = new CreateContrato(scanner);
+                    Contrato contrato = createContrato.persist();
+                    con.persist(contrato);
                     break;
                 case "02":
                     break;
                 case "03":
                     break;
                 case "04":
+                    CreateAutomovel createAutomovel = new CreateAutomovel(scanner);
+                    Automovel automovel = createAutomovel.persist();
+                    con.persist(automovel);
                     break;
                 case "05":
                     break;
