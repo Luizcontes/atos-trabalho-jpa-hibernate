@@ -4,6 +4,11 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 import contes.Database.LocadoraDb;
+import contes.Repository.Cliente;
+import contes.Service.GetContrato;
+import contes.Service.CreateCliente;
+import contes.Service.CreateContrato;
+import contes.Service.GetCliente;
 
 public class App 
 {
@@ -15,13 +20,15 @@ public class App
         // Pessoa pessoa = new Pessoa();
         // pessoa.setName("luluzinha");
         // con.persist(pessoa);
-        boolean manter = true;
-
-        LocalDate data = LocalDate.parse("2020-10-08");
-
-        data = data.plusDays(3);
-        System.out.print(data);
         
+        // LocalDate data = LocalDate.parse("2020-10-08");
+        
+        // data = data.plusDays(3);
+        // System.out.print(data);
+        
+        
+        boolean manter = true;
+      
         while (manter) {
             System.out.println( "SISTEMA DE ALGUEL DE CARROS\n" );
             System.out.println("S - SAIR");
@@ -39,7 +46,7 @@ public class App
             System.out.println("11 - LISTAR TODOS OS CLIENTES");
             System.out.print("Escolha uma opcao: ");
             String opcao = scanner.nextLine();
-        
+
             switch(opcao) {
                 case "S":
                 case "s":
@@ -47,8 +54,12 @@ public class App
                     manter = false;
                     break;
                 case "00":
+                    // logic = new GetContrato();
+                    // logic.persist(scanner);
                     break;
                 case "01":
+                    // logic = new CreateContrato();
+                    // logic.persist(scanner);
                     break;
                 case "02":
                     break;
@@ -59,10 +70,16 @@ public class App
                 case "05":
                     break;
                 case "06":
+                    // logic = new GetCliente();
+                    // logic.persist(scanner);
                     break;
                 case "07":
+                    CreateCliente createCliente = new CreateCliente(scanner);
+                    Cliente cliente = createCliente.persist();
+                    con.persist(cliente);
                     break;
                 case "08":
+                    // DestroyCliente
                     break;
                 case "09":
                     break;
@@ -75,7 +92,7 @@ public class App
                     scanner.nextLine();
             }
         }
-        con.close();
+        // con.close();
         scanner.close();
     }
 }

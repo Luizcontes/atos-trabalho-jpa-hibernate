@@ -2,7 +2,7 @@ package contes.Controller;
 
 import java.util.List;
 
-import contes.Contrato;
+import contes.Repository.Contrato;
 
 public class UserController {
     
