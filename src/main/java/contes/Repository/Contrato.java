@@ -1,60 +1,78 @@
 package contes.Repository;
 
 import java.time.LocalDate;
-import java.time.Period;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "contrato")
 public class Contrato {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int nContrato;
     @ManyToOne
-    private Cliente cpf;
+    private Cliente cliente;
     @ManyToOne
-    private Automovel placa;
+    private Automovel automovel;
     private double preco;
     private LocalDate data;
-    private Period periodo;
+    private int periodo;
 
-    
-    public Cliente getCpf() {
-        return cpf;
+    public Cliente getCliente() {
+        return cliente;
     }
-    public void setCpf(Cliente cpf) {
-        this.cpf = cpf;
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
-    public Automovel getPlaca() {
-        return placa;
+
+    public Automovel getAutomovel() {
+        return automovel;
     }
-    public void setPlaca(Automovel placa) {
-        this.placa = placa;
+
+    public void setAutomovel(Automovel automovel) {
+        this.automovel = automovel;
     }
+
     public double getPreco() {
         return preco;
     }
+
     public void setPreco(double preco) {
         this.preco = preco;
     }
+
     public LocalDate getData() {
         return data;
     }
+
     public void setData(LocalDate data) {
         this.data = data;
     }
-    public Period getPeriodo() {
+
+    public int getPeriodo() {
         return periodo;
     }
-    public void setPeriodo(Period periodo) {
+
+    public void setPeriodo(int periodo) {
         this.periodo = periodo;
     }
 
-    
+    @Override
+    public String toString() {
+        String contrato = "\nNome: " + cliente.getNome() +
+                "\nAutomovel: " + automovel.getMarca() +
+                "\nData: " + data +
+                "\nPeriodo: " + periodo +
+                "\nPreco total: " + (periodo * preco) +
+                "\nData da devolucao: " + (data.plusDays(periodo));
 
+        return contrato;
+    }
 }

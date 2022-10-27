@@ -2,19 +2,31 @@ package contes.Service;
 
 import java.util.Scanner;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import contes.Message;
+import contes.Strategy;
 import contes.Repository.Cliente;
 
-public class CreateCliente {
+public class CreateCliente implements Strategy {
 
-    Cliente cliente = new Cliente();
+    EntityManagerFactory entityFactory;
+    EntityManager entityManager;
+
     Scanner scanner;
 
     public CreateCliente(Scanner scanner) {
         this.scanner = scanner;
+        entityFactory = Persistence.createEntityManagerFactory("teste");
+        entityManager = entityFactory.createEntityManager();
     }
 
-    public Cliente persist() {
-        
+    public void execute() {
+
+        Cliente cliente = new Cliente();
+        cliente.setAtivo(true);
 
         System.out.println("");
         System.out.println("CADASTRAR NOVO CLIENTE");
@@ -23,19 +35,45 @@ public class CreateCliente {
         cliente.setNome(scanner.nextLine());
         System.out.print("Endereco: ");
         cliente.setEndereco(scanner.nextLine());
-        System.out.print("CPF: ");
-        while(true) {
+
+        while (true) {
             try {
-                cliente.setCpf(scanner.nextInt());
+                System.out.print("CPF: ");
+                cliente.setCpf(scanner.nextLong());
                 break;
             } catch (Exception e) {
-                System.out.println("CPF inserido com formato invalido");
-                scanner.nextLine();          
+                System.out.print("\nCPF inserido com formato invalido...");
+                scanner.nextLine();
+            } finally {
+                scanner.nextLine();
             }
         }
 
-        scanner.nextLine();
-        return cliente;
+        System.out.print("CNH: ");
+        cliente.setCnh(scanner.nextLine());
+
+        try {
+
+            Cliente tmp = entityManager.find(Cliente.class, cliente.getCpf());
+            // System.out.println(tmp);
+
+            if (tmp == null) {
+                entityManager.getTransaction().begin();
+                entityManager.persist(cliente);
+                entityManager.getTransaction().commit();
+                entityManager.close();
+                Message.printEnd("\nCliente cadastrado com sucesso...", scanner);
+            } else {
+                tmp.setAtivo(true);
+                entityManager.getTransaction().begin();
+                entityManager.merge(tmp);
+                entityManager.getTransaction().commit();
+                entityManager.close();
+                Message.printEnd("\nCliente ja existe na base de dados, cliente reativado...", scanner);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
-    
 }

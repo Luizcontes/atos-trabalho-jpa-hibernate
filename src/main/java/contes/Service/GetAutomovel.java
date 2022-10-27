@@ -8,16 +8,16 @@ import javax.persistence.Persistence;
 
 import contes.Message;
 import contes.Strategy;
-import contes.Repository.Cliente;
+import contes.Repository.Automovel;
 
-public class GetCliente implements Strategy{
+public class GetAutomovel implements Strategy{
 
     EntityManagerFactory entityFactory;
     EntityManager entityManager;
 
     Scanner scanner;
 
-    public GetCliente(Scanner scanner) {
+    public GetAutomovel(Scanner scanner) {
         this.scanner = scanner;
         entityFactory = Persistence.createEntityManagerFactory("teste");
         entityManager = entityFactory.createEntityManager();
@@ -25,18 +25,18 @@ public class GetCliente implements Strategy{
 
     public void execute() {
         
-        System.out.println("BUSCAR CLIENTE");
+        System.out.println("BUSCAR AUTOMOVEL");
         
-        System.out.print("\nDigite o numero do CPF do cliente que deseja buscar: ");
-            long cpf = scanner.nextLong();
-            scanner.nextLine();
+        System.out.print("\nDigite a placa do automovel que deseja buscar: ");
+            String placa = scanner.nextLine();
+            // scanner.nextLine();
         
-        Cliente cliente = entityManager.find(Cliente.class, cpf);
+        Automovel automovel = entityManager.find(Automovel.class, placa);
 
-        if (cliente == null) {
-            Message.printEnd("\nNa ha cliente cadastrado com este cpf...", scanner);;
+        if (automovel == null) {
+            Message.printEnd("\nNa ha automovel cadastrado com esta placa...", scanner);;
         } else {
-            System.out.println(cliente);
+            System.out.println(automovel);
             Message.printEnd("\nPressione qualquer tecla para voltar ao menu anterior...", scanner);
         }
 
