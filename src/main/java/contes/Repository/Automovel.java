@@ -1,9 +1,14 @@
 package contes.Repository;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 @Entity
+@Table(name = "automovel")
 public class Automovel {
 
     @Id
@@ -12,6 +17,8 @@ public class Automovel {
     private String modelo;
     private String versao;
     private int ano;
+    @Column(nullable = false)
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean ativo;
     
     public Automovel() {
@@ -57,6 +64,15 @@ public class Automovel {
         this.ativo = ativo;
     }
 
-
+    @Override
+    public String toString() {
+        String automovel =  "\nMARCA: " + marca +
+            "\nMODELO: " + modelo +
+            "\nVERSAO: " + versao +
+            "\nPLACA: " + placa +
+            "\nANO: " + ano;
+            
+            return automovel;
+    }
     
 }

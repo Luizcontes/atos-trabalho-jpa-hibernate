@@ -1,0 +1,47 @@
+[33mcommit b4a44e75f8f76ef2e85234aad37abcdfacaf1452[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: luiz <luiz.contes@hotmail.com>
+Date:   Fri Oct 28 00:51:03 2022 +0100
+
+    feat: all create methods functioning
+
+[33mcommit b32e50eed00aea8c2ab30de973291a0057166e99[m[33m ([m[1;32mcreateCliente[m[33m)[m
+Author: luizcontes <luiz.contes@hotmail.com>
+Date:   Mon Oct 24 22:45:19 2022 +0100
+
+    feat: logic to create cliente created
+
+[33mcommit 4308ffe325764570df77b8e51ce4c3f99b628e06[m
+Author: luizcontes <luiz.contes@hotmail.com>
+Date:   Mon Oct 24 17:53:13 2022 +0100
+
+    feat: persising cliente data in the database
+
+[33mcommit df1ef5008320f64713ccc11b7c07ecf382cd4f9d[m
+Author: luizcontes <luiz.contes@hotmail.com>
+Date:   Sat Oct 22 23:54:01 2022 +0100
+
+    fix: class Pessoa conflict
+
+[33mcommit a3731a6a0034087a3f7fffed0fbb008a429236ab[m
+Author: luizcontes <luiz.contes@hotmail.com>
+Date:   Sat Oct 22 23:22:57 2022 +0100
+
+    refactor: changed DB access
+
+[33mcommit 5d553ecefa686891e609d4217b12731bb74bdcb1[m
+Author: luizcontes <luiz.contes@hotmail.com>
+Date:   Fri Oct 21 19:50:43 2022 +0100
+
+    feat: hibernate setup
+
+[33mcommit bd735fbce52851fa3bccf584d3eb28b5a6eed984[m
+Author: luizcontes <luiz.contes@hotmail.com>
+Date:   Fri Oct 21 17:14:00 2022 +0100
+
+    feat: controller template created
+
+[33mcommit 8656166c34787d76b8ab81e0e25a1719b9a51d58[m
+Author: luiz <luiz.contes@hotmail.com>
+Date:   Sat Oct 15 17:29:33 2022 +0100
+
+    project created - java jpa and hibernate
